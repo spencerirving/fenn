@@ -1,6 +1,6 @@
 # Contribution Guide
 
-Welcome to the **SMLE** project! This guide explains how to prepare your changes, work with Git, and open good pull requests.
+Welcome to the **pySMLE** project! This guide explains how to prepare your changes, work with Git, and open good pull requests.
 
 ## Initial Checks
 
@@ -15,7 +15,7 @@ If you are new to Git and GitHub, the steps below describe a simple way to contr
 
 - Fork the repository to your own GitHub account.
 - Clone your fork locally:
-  `git clone https://github.com/<your-username>/smle.git`
+  `git clone https://github.com/<your-username>/pysmle.git`
 - Create a new branch for your work:
   `git checkout -b feature`
 - Make and test your changes.
@@ -25,7 +25,7 @@ If you are new to Git and GitHub, the steps below describe a simple way to contr
   `git commit -m "Describe your change"`
 - Push your branch:
   `git push origin feature`
-- Open a pull request from your branch into the main `smle` repository.
+- Open a pull request from your branch into the main `pySMLE` repository.
 
 Try to keep each branch focused on a single issue or feature so that reviews are easier.
 
@@ -37,7 +37,7 @@ When you make changes, aim to:
 - Add or update tests and documentation if your change affects behavior or public APIs.
 - Keep commits logically grouped (for example, separate “refactor” from “new feature” where it makes sense).
 
-**Please note** that, in order to test your changes, you need to reinstall `smle` locally in editable mode by running:
+**Please note** that, in order to test your changes, you need to reinstall `pySMLE` locally in editable mode by running:
 
 ```
 pip install -e . 
@@ -64,7 +64,7 @@ If you find a bug or have a feature request but do not plan to implement it your
 
 - Open a GitHub issue with a clear description of the problem or idea.
 - For bugs, describe the expected behavior, the actual behavior, and how to reproduce it (include versions and environment details when possible).
-- For feature requests, explain the use case and how it would benefit SMLE users.
+- For feature requests, explain the use case and how it would benefit pySMLE users.
 
 If you need guidance at any point, use the Discord server or the GitHub discussion thread to ask questions and coordinate with maintainers and other contributors.
 
