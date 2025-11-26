@@ -41,7 +41,7 @@ When you make changes, aim to:
 Once your branch is ready:
 
 - Ensure the project still installs and runs as expected (and tests pass, if available).
-- Rebase or merge the latest default branch into your branch to resolve conflicts before opening the PR.
+- **Rebase or merge the latest default branch into your branch to resolve conflicts before opening the PR.**
 - Push your final changes and prepare to open a pull request.
 
 ## Submitting a Pull Request (PR)
@@ -59,4 +59,4 @@ If you find a bug or have a feature request but do not plan to implement it your
 - For bugs, describe the expected behavior, the actual behavior, and how to reproduce it (include versions and environment details when possible).
 - For feature requests, explain the use case and how it would benefit SMLE users.
 
-If you need guidance at any point, use the Discord server or the linked GitHub discussion thread to ask questions and coordinate with maintainers and other contributors.
+If you need guidance at any point, use the Discord server or the GitHub discussion thread to ask questions and coordinate with maintainers and other contributors.
