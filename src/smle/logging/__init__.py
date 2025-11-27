@@ -5,7 +5,7 @@ from datetime import datetime
 from pathlib import Path
 import wandb
 from colorama import Fore, Style
-import sys
+
 from typing import Any, Dict, Optional
 
 from smle.args import Parser
@@ -83,9 +83,9 @@ class Logger:
 
         try:
             wandb_key = self._keystore.get_key("WANDB_API_KEY")
-        except Exception:
+        except Exception as exc:
             self.system_log(f"{Fore.RED}[SMLE] No valid WANDB API key provided in .env{Style.RESET_ALL}")
-            sys.exit(1)
+            raise RuntimeError("No valid WANDB API key provided in .env") from exc
 
         if not os.environ.get("WANDB_API_KEY"):
             os.environ["WANDB_API_KEY"] = wandb_key
@@ -100,8 +100,9 @@ class Logger:
 
             print(f"{Fore.GREEN}[SMLE] Wandb session initialized.{Style.RESET_ALL}")
 
-        except:
+        except Exception as exc:
             print(f"{Fore.RED}[SMLE] Failed to start wandb session.{Style.RESET_ALL}")
             print(f"{Fore.RED}[SMLE] Please check your wandb configuration in your yaml file and .env file.{Style.RESET_ALL}")
             print(f"{Fore.RED}[SMLE] Please ensure your internet connection is up-and-running.{Style.RESET_ALL}")
-            sys.exit(1)
+            raise RuntimeError(f"Failed to initialize wandb: {exc}") from exc
+
