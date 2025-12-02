@@ -1,44 +1,45 @@
 Quickstart
-===========
+==========
 
-This section provides a guided overview of setting up SMLE in a new environment, defining a minimal project structure, and executing an initial experiment through a configuration-driven entrypoint. By the end of this section, you will have a functioning Python script that relies on ``smle.yaml`` for configuration rather than hardcoded parameters.
+This section provides a guided overview of setting up FENN in a new environment, defining a minimal project structure, and executing an initial experiment through a configuration-driven entrypoint. By the end of this section, you will have a functioning Python script that relies on ``fenn.yaml`` for configuration rather than hardcoded parameters.
 
 Installation
 ------------
-SMLE is distributed as a standard Python package and can be installed from PyPI.
+
+FENN is distributed as a standard Python package and can be installed from PyPI.
 It is recommended to use a virtual environment (``venv`` or ``conda``) to keep your project dependencies isolated.
 
 .. code-block:: bash
 
-    pip install smle
+    pip install fenn
 
 Basic Usage Steps
 -----------------
 
-The typical SMLE workflow is:
+The typical FENN workflow is:
 
 1. Generate a project skeleton and configuration file.
-2. Implement your training logic using the SMLE entrypoint.
-3. Run the script as a normal Python module while SMLE takes care of configuration
+2. Implement your training logic using the FENN entrypoint.
+3. Run the script as a normal Python module while FENN takes care of configuration
    parsing, logging, and integration with external tools.
 
 1. Initialize a Project
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Run the CLI tool to generate a template and config file in the current directory.
-This will usually create a basic ``main.py`` script and a default ``smle.yaml`` file.
+This will usually create a basic ``main.py`` script and a default ``fenn.yaml`` file.
 
 .. code-block:: bash
 
-    smle init
+    fenn init
 
 After running this command, you can immediately open the generated files and adapt them to your model, dataset, and training loop.
-You can configure the ``smle.yaml`` file with the hyperparameters and options for your project. The structure of the ``smle.yaml`` file is:
+You can configure the ``fenn.yaml`` file with the hyperparameters and options for your project. The structure of the ``fenn.yaml`` file is:
 
 .. code-block:: yaml
 
     # ---------------------------------------
-    # SMLE Configuration (Modify Carefully)
+    # FENN Configuration (Modify Carefully)
     # ---------------------------------------
 
     project: project_name
@@ -66,22 +67,21 @@ You can configure the ``smle.yaml`` file with the hyperparameters and options fo
 
 Set your WANDB API key in the ``.env`` file.
 
-
 2. Write Your Code
 ^^^^^^^^^^^^^^^^^^
 
-You can work on the ``main.py`` script to create your project. Use the ``@app.entrypoint`` decorator. Your configuration variables are automatically passed via ``args`` as a nested dictionary that mirrors the structure of ``smle.yaml``.
+You can work on the ``main.py`` script to create your project. Use the ``@app.entrypoint`` decorator. Your configuration variables are automatically passed via ``args`` as a nested dictionary that mirrors the structure of ``fenn.yaml``.
 Inside ``main``, you never hardcode hyperparameters; instead, you read them from ``args`` so that experiments can be reproduced or changed just by editing YAML.
 
 .. code-block:: python
 
-    from smle import SMLE
+    from fenn import FENN
 
-    app = SMLE()
+    app = FENN()
 
     @app.entrypoint
     def main(args):
-        # 'args' contains your smle.yaml configurations
+        # 'args' contains your fenn.yaml configurations
         print(f"Training with learning rate: {args['training']['lr']}")
 
         # Your logic here...
@@ -99,9 +99,8 @@ running your entrypoint script as a normal Python program:
 
     python main.py
 
+During execution, FENN will:
 
-During execution, SMLE will:
-
-- Parse ``smle.yaml`` and inject its contents into ``args``.
+- Parse ``fenn.yaml`` and inject its contents into ``args``.
 - Initialize logging so that standard output and configuration are captured.
 - Optionally connect to remote trackers (for example, WandB) if enabled in the config.

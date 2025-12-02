@@ -1,7 +1,7 @@
 Introduction
 ============
 
-Why SMLE?
+Why FENN?
 ---------
 
 * **Auto-Configuration:** ``yaml`` files are automatically parsed and injected into your entrypoint, so you avoid hardcoded hyperparameters.
@@ -9,18 +9,7 @@ Why SMLE?
 * **Remote Monitoring:** Native integration with `Weights & Biases (WandB) <https://wandb.ai/>`_ lets you monitor experiments from anywhere.
 
 .. tip::
-    If you are using SMLE for the first time, start with the ``Quickstart`` section to scaffold a project, configure your first ``smle.yaml``, and run an experiment end-to-end in a few minutes.
-
-Contributing
-------------
-
-Contributions are welcome! If you have ideas for improvements, feel free to fork the repository and submit a pull request.
-
-#. Fork the Project
-#. Create your Feature Branch (``git checkout -b feature/AmazingFeature``)
-#. Commit your Changes (``git commit -m 'Add some AmazingFeature'``)
-#. Push to the Branch (``git push origin feature/AmazingFeature``)
-#. Open a Pull Request
+    If you are using FENN for the first time, start with the ``Quickstart`` section to scaffold a project, configure your first ``fenn.yaml``, and run an experiment end-to-end in a few minutes.
 
 Roadmap
 -------
@@ -31,8 +20,6 @@ Roadmap
 High-priority goals include richer documentation, safer key management (for example, through ``.env`` support), and multiple or layered YAML configurations.
 
 * **Documentation:** Write comprehensive documentation and examples.
-* **Security:** Improve user key management (e.g., WandB key) using ``.env`` file support.
-* **Configuration:** Add support for multiple/layered YAML files.
 
 🔮 Planned Features
 ^^^^^^^^^^^^^^^^^^^
