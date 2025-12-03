@@ -36,6 +36,15 @@ class FENN:
         """
         The method that executes the application's core logic.
         """
+        self._logger.system_log(
+            "***********************************************************************************\n"
+            f"{Style.BRIGHT}Hi, thank you for using the {Fore.GREEN}PyFenn{Style.RESET_ALL}{Style.BRIGHT} framework.{Style.RESET_ALL}\n"
+            f"PyFenn is still in an {Fore.YELLOW}alpha version{Style.RESET_ALL}.\n"
+            "If you find a bug or inconsistency, if you want to contribute or request a feature,\nplease open an issue at "
+            f"{Fore.CYAN}https://github.com/pyfenn/fenn/issues{Style.RESET_ALL}\n"
+            "Thank you for your support!\n"
+            "***********************************************************************************\n"
+        )
 
         if not self._entrypoint_fn:
             raise RuntimeError(
