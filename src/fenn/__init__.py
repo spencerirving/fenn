@@ -4,11 +4,10 @@ from typing import Callable, Optional, Any
 from fenn.args import Parser
 from fenn.logging import Logger
 from fenn.secrets.keystore import KeyStore
-
 from fenn.utils import generate_haiku_id
 
-class FENN:
 
+class FENN:
     """
     The base FENN application
     """
@@ -19,7 +18,12 @@ class FENN:
 
         self._parser: Parser = Parser()
         self._keystore: KeyStore = KeyStore()
+<<<<<<< HEAD
         self._logger: Logger = Logger()
+=======
+        self._logger: Logger = Logger.get_instance()   # SINGLETON
+        self._notifier: Notifier = Notifier()
+>>>>>>> 3d275e6 (Add diff.txt to .gitignore)
         self._config_file: str = None
 
         self._entrypoint_fn: Optional[Callable] = None
@@ -37,26 +41,58 @@ class FENN:
         """
 
         if not self._entrypoint_fn:
-            raise RuntimeError(f"{Fore.RED}[SMLE] No main function registered. {Fore.RED}[SMLE] Please use {Fore.LIGHTYELLOW_EX}@app.entrypoint{Fore.RED} to register your main function{Style.RESET_ALL}")
+            raise RuntimeError(
+                f"{Fore.RED}[FENN][EXCEPTION] No main function registered. "
+                f"Please use {Fore.LIGHTYELLOW_EX}@app.entrypoint{Style.RESET_ALL} "
+                "to register your main function."
+            )
 
-        self._parser.config_file = self._config_file if self._config_file != None else "fenn.yaml"
+        # Load config
+        self._parser.config_file = (
+            self._config_file if self._config_file is not None else "fenn.yaml"
+        )
         self._args = self._parser.load_configuration()
         self._args["session_id"] = self._session_id
 
+        # Start logging
         self._logger.start()
 
+        # Print parsed config (user logs)
         self._parser.print()
 
         try:
-            # The execution of the decorated user function
-            print(f"{Fore.GREEN}[SMLE] Application starting from {Fore.LIGHTYELLOW_EX}{self._entrypoint_fn.__name__}{Fore.GREEN} entrypoint.{Style.RESET_ALL}")
+            # System startup message
+            self._logger.system_info(
+                f"Application starting from entrypoint: {self._entrypoint_fn.__name__}"
+            )
 
+            # Execute user function
             result = self._entrypoint_fn(self._args)
-
             return result
+
         finally:
             self._logger.stop()
 
+<<<<<<< HEAD
+=======
+    def register_notification_services(
+        self,
+        services: Iterable[Type[Service]],
+    ) -> None:
+        """
+        Register notification service classes.
+
+        Example:
+            app.register_notification_services([Discord, Telegram])
+        """
+
+        for service_cls in services:
+            self._notifier.add_service(service_cls())
+
+    def notify(self, message: str):
+        self._notifier.notify(message)
+
+>>>>>>> 3d275e6 (Add diff.txt to .gitignore)
     @property
     def config_file(self) -> str:
         return self._config_file
