@@ -4,8 +4,6 @@ from colorama import Fore, Style, init
 from typing import Any, Dict
 
 from fenn.secrets.keystore import KeyStore
-from fenn.logging import Logger
-
 
 class Parser:
 
@@ -27,8 +25,9 @@ class Parser:
 
     def load_configuration(self) -> Any:
         """Loads the YAML configuration into the _args dictionary."""
+        from fenn.logging import Logger
 
-        logger = Logger.get_instance()
+        logger = Logger()
 
         # Check if file exists BEFORE reading
         default = "(default)" if self._config_file == "fenn.yaml" else ""
@@ -90,7 +89,7 @@ class Parser:
                 color = colors[i % len(colors)]
                 colored_parts.append(f"{color}{part}{Style.RESET_ALL}")
 
-            Logger.get_instance().user_info(f"{'/'.join(colored_parts)}: {v}")
+            Logger().user_info(f"{'/'.join(colored_parts)}: {v}")
 
     @property
     def config_file(self) -> str:

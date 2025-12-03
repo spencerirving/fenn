@@ -24,9 +24,7 @@ class Logger:
 
     @staticmethod
     def get_instance() -> "Logger":
-        if Logger._instance is None:
-            Logger()
-        return Logger._instance
+        return Logger()
 
     def __init__(self) -> None:
         if hasattr(self, "_initialized") and self._initialized:

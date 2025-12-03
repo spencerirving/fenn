@@ -18,7 +18,12 @@ class FENN:
 
         self._parser: Parser = Parser()
         self._keystore: KeyStore = KeyStore()
-        self._logger: Logger = Logger.get_instance()   # Singleton
+        self._logger: Logger = Logger()   # Singleton
+
+        # DISCLAIMER:
+        # This class is the base class for all FENN applications.
+        # It is designed to be subclassed, not instantiated directly.
+        # Please do not modify this class unless you know what you are doing.
         self._config_file: str = None
 
         self._entrypoint_fn: Optional[Callable] = None
