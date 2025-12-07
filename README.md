@@ -24,7 +24,7 @@ fenn is a lightweight Python framework that automates the "boring stuff" in Mach
 
 - **Instant Notifications**: Get real-time alerts on **Discord** and **Telegram** when experiments start, complete, or fail—no polling or manual checks.
 
-- **Template Ready**: Built-in support for reproducible, shareable experiment templates (template pull system coming soon).
+- **Template Ready**: Built-in support for reproducible, shareable experiment templates.
 
 ## Installation
 
